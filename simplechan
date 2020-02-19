@@ -15,7 +15,7 @@ public class Simulator{
     const int HALT = 43;
 
     static int accumlator;
-    static int instructionCOunter;
+    static int instructionCounter;
     static int operand;
     static int operationCode;
     static int instructionRegister;
@@ -29,7 +29,7 @@ public class Simulator{
         PrintInstructions();
         LoadInstructions();
 
-        Excute();
+        Execute();
         Dump();
     }
 
@@ -55,12 +55,57 @@ public class Simulator{
         Console.Writeline("*** -99999 to stop entering your program. ***");
     }
 
-    public statid void LoadInstructions(){
+    public static void LoadInstructions(){
         Console.Write($"{index:D2}? ");
         int instruction = int.Parse(Console.ReadLine());
 
         while(instruction != -99999 && index< 100){
-            
+        
+
+        }
+    }
+    public void Execute(){
+        Console.WriteLine("*** Program execution begins ***");
+
+        while (instructionCounter< index){
+            instructionRegister = memory[instructionCounter];
+            operationCode = instructionRegister / 100;
+            operand = instructionRegister % 100;
+            ++instructionCounter;
+
+            switch(operationCode){
+                case READ:
+                    Console.Write("Enter an Integer: ");
+                    memory[operand] = Convert.ToInt(Console.ReadLine());
+                    break;
+                case  WRITE:
+                    break;
+                case LOAD;
+                    break;
+                case STORE;
+                    break;
+                case ADD:
+                    break;
+                case SUBTRACT:
+                    break;
+                case MULTIPLY:
+                    break;
+                case DIVIDE:
+                    break;
+                case BRANCH:
+                    break;
+                case BRANCH_NEG:
+                    break;
+                case BRANCH_ZERO:
+                    break;
+                case HALT:
+                    Console.WriteLine("*** Simpletron execution terminated ***");
+                    return;
+                default:
+                    Console.WriteLine("*** Fatal error. Operation code could not be identified. ***");
+                    return;
+            }
+        
         }
     }
 }

@@ -80,13 +80,17 @@ public class Simulator{
                     break;
                 case  WRITE:
                     break;
-                case LOAD;
+                case LOAD:
+                    accumlator = memory[operand];
                     break;
-                case STORE;
+                case STORE:
+                    memory[operand] = accumlator;
                     break;
                 case ADD:
+                    accumlator+= memory[operand];
                     break;
                 case SUBTRACT:
+                    accumlator-= memory[operand];
                     break;
                 case MULTIPLY:
                     break;
@@ -107,5 +111,8 @@ public class Simulator{
             }
         
         }
+    }
+    public void Dump(){
+        
     }
 }
